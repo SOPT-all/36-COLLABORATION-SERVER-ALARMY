@@ -11,7 +11,7 @@ public class Alarm {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime timeStamp;
+    private LocalDateTime timestamp;
 
     private boolean isActive;
 
