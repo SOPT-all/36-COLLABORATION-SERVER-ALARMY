@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 public enum ResultCode {
 
     ALARM_CREATE_SUCCESS(HttpStatus.CREATED.value(), HttpStatus.CREATED, "알람 생성 성공"),
-    ALARM_FETCH_ALL_SUCCESS(HttpStatus.OK.value(), HttpStatus.OK, "알람 전체 조회 성공"),
-    ALARM_CHECK_TIME_SUCCESS(HttpStatus.OK.value(), HttpStatus.OK, "일어나야지"),
+    ALARM_FETCH_SUCCESS(HttpStatus.OK.value(), HttpStatus.OK, "알람 전체 조회 성공"),
+    ALARM_CHECK_TIME_SUCCESS(HttpStatus.OK.value(), HttpStatus.OK, "알람 시간 체크 성공"),
     TODAY_SENTENCE_FETCH_SUCCESS(HttpStatus.OK.value(), HttpStatus.OK, "오늘의 문장 생성 성공"),
     WEATHER_FETCH_SUCCESS(HttpStatus.OK.value(), HttpStatus.OK, "날씨 조회 성공");
 
