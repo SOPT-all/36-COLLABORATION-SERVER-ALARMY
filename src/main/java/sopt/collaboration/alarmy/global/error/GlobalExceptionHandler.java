@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 import sopt.collaboration.alarmy.global.error.exception.BusinessException;
-import sopt.collaboration.alarmy.global.error.exception.ErrorResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
