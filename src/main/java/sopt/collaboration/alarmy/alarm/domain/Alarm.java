@@ -1,17 +1,23 @@
 package sopt.collaboration.alarmy.alarm.domain;
 
 import jakarta.persistence.*;
+import lombok.*;
 import sopt.collaboration.alarmy.member.domain.Member;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Alarm {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime timestamp;
+    private LocalTime timestamp;
 
     private boolean isActive;
 
