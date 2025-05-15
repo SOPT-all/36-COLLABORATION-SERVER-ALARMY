@@ -1,4 +1,4 @@
-package sopt.collaboration.alarmy.controller;
+package sopt.collaboration.alarmy.common.healthcheck;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
