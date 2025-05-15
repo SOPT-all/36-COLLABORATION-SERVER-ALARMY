@@ -1,6 +1,7 @@
 package sopt.collaboration.alarmy.external.weather.dto.response.enums;
 
 import lombok.Getter;
+import sopt.collaboration.alarmy.global.error.exception.UnknownWeatherCodeException;
 
 @Getter
 public enum WeatherCode {
@@ -21,7 +22,7 @@ public enum WeatherCode {
             if (condition.code == code) return condition;
         }
         // 예외 커스텀 해줘야 함
-        throw new IllegalArgumentException("Unknown sky condition code: " + code);
+        throw new UnknownWeatherCodeException();
     }
 
     @Override

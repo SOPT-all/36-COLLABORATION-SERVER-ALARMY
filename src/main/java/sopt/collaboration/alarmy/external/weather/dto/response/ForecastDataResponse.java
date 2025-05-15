@@ -2,6 +2,7 @@ package sopt.collaboration.alarmy.external.weather.dto.response;
 
 import lombok.Data;
 import sopt.collaboration.alarmy.external.weather.dto.response.enums.WeatherCode;
+import sopt.collaboration.alarmy.global.error.exception.WeatherCodeParsingException;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -53,10 +54,10 @@ public class ForecastDataResponse {
         Items items = this.response.body.items;
         Item sky = items.getItem().stream()
                 .filter(item -> item.category.equals("SKY"))
-                .findFirst().orElseThrow(NoSuchElementException::new);
+                .findFirst().orElseThrow(WeatherCodeParsingException::new);
         Item rainCondition = items.getItem().stream()
                 .filter(item -> item.category.equals("PCP"))
-                .findFirst().orElseThrow(NoSuchElementException::new);
+                .findFirst().orElseThrow(WeatherCodeParsingException::new);
 
         if(!rainCondition.fcstValue.equals("강수없음")) return WeatherCode.RAINY;
         if(sky.fcstValue.equals("4")) return WeatherCode.CLOUDY;
@@ -67,7 +68,7 @@ public class ForecastDataResponse {
     public int getTemperature(){
         Item tmp = this.response.body.items.getItem().stream()
                 .filter(item -> item.category.equals("TMP"))
-                .findFirst().orElseThrow(NoSuchElementException::new);
+                .findFirst().orElseThrow(WeatherCodeParsingException::new);
         return Integer.parseInt(tmp.fcstValue);
     }
 

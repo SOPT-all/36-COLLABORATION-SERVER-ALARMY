@@ -1,5 +1,6 @@
 package sopt.collaboration.alarmy.global.error;
 
+import feign.FeignException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -38,6 +39,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     protected ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e){
         ErrorCode errorCode = ErrorCode.NOT_VALID_HEADER;
+        ErrorResponse errorResponse = ErrorResponse.of(errorCode);
+
+        return new ResponseEntity<>(errorResponse, errorCode.getStatus());
+    }
+
+    @ExceptionHandler(FeignException.class)
+    protected ResponseEntity<ErrorResponse> handleFeignException(FeignException e){
+        ErrorCode errorCode = ErrorCode.EXTERNAL_API_CLIENT_ERROR;
         ErrorResponse errorResponse = ErrorResponse.of(errorCode);
 
         return new ResponseEntity<>(errorResponse, errorCode.getStatus());
