@@ -6,8 +6,7 @@ import lombok.Getter;
 public enum WeatherCode {
     CLEAR(1, "맑음"),
     RAINY(2, "비옴"),
-    MOSTLY_CLOUDY(3, "구름많음"),
-    CLOUDY(4, "흐림");
+    CLOUDY(3, "흐림");
 
     private final int code;
     private final String description;

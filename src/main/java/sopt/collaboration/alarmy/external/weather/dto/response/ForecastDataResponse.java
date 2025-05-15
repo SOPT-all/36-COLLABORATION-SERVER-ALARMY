@@ -58,9 +58,8 @@ public class ForecastDataResponse {
                 .filter(item -> item.category.equals("PCP"))
                 .findFirst().orElseThrow(NoSuchElementException::new);
 
-        if(!rainCondition.fcstValue.equals("강수없음")){
-            return WeatherCode.RAINY;
-        }
+        if(!rainCondition.fcstValue.equals("강수없음")) return WeatherCode.RAINY;
+        if(sky.fcstValue.equals("4")) return WeatherCode.CLOUDY;
         return WeatherCode.fromCode(Integer.parseInt(sky.fcstValue));
 
     }
