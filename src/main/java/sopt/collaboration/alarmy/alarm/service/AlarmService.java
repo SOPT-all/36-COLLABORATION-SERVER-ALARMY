@@ -9,6 +9,7 @@ import sopt.collaboration.alarmy.alarm.dto.response.AlarmResponse;
 import sopt.collaboration.alarmy.alarm.repository.AlarmRepository;
 import sopt.collaboration.alarmy.global.error.ErrorCode;
 import sopt.collaboration.alarmy.global.error.exception.BusinessException;
+import sopt.collaboration.alarmy.global.error.exception.NoSuchMemberException;
 import sopt.collaboration.alarmy.member.domain.Member;
 import sopt.collaboration.alarmy.member.repository.MemberRepository;
 
@@ -28,7 +29,7 @@ public class AlarmService {
     public List<AlarmResponse> createAlarm(long userId, AlarmRequest request) {
 
         Member member = memberRepository.findById(userId)
-                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_MEMBER));
+                .orElseThrow(NoSuchMemberException::new);
 
         LocalTime time = LocalTime.parse(request.timestamp());
 
@@ -46,7 +47,7 @@ public class AlarmService {
     @Transactional(readOnly = true)
     public List<AlarmResponse> getAllAlarms(long userId) {
         Member member = memberRepository.findById(userId)
-                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_MEMBER));
+                .orElseThrow(NoSuchMemberException::new);
 
         return alarmRepository.findByMember(member).stream()
                 .map(alarm -> new AlarmResponse(alarm.getId(), formatTime(alarm.getTimestamp()), alarm.isActive()))
