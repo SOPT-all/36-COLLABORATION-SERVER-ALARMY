@@ -20,6 +20,12 @@ public enum ErrorCode {
     EXTERNAL_API_CLIENT_ERROR(HttpStatus.BAD_GATEWAY.value(), HttpStatus.BAD_GATEWAY, "외부 API 호출 실패"),
 
     /**
+     * 오늘의 문장 관련 예외
+     */
+    NOT_FOUND_PHRASE(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND, "존재하지 않는 오늘의 문장입니다."),
+    NOT_FOUND_USER_PHRASE(HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND, "유저에게 연결된 오늘의 문장이 없습니다."),
+
+    /**
      * 공통 예외
      */
     NOT_SUPPORTED_METHOD_ERROR(HttpStatus.METHOD_NOT_ALLOWED.value(), HttpStatus.METHOD_NOT_ALLOWED, "지원하지 않는 HTTP 메서드입니다."),
