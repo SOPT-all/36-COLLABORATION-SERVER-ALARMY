@@ -98,7 +98,7 @@ public class AlarmController {
     })
     @GetMapping("/alarm/check")
     public ResponseEntity<ResultResponse<AlarmCheckListResponse>> getAlarmCheck(
-            @RequestHeader("Authorization") long userId,
+            @RequestHeader("userId") long userId,
             @RequestBody AlarmCheckRequest alarmCheckRequest
     ) {
         AlarmCheckListResponse alarmInfo = alarmService.getTimeCheckAlarm(userId, alarmCheckRequest);
