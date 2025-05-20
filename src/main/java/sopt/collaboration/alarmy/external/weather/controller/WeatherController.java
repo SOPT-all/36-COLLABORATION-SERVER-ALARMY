@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sopt.collaboration.alarmy.external.weather.dto.response.WeatherResponse;
 import sopt.collaboration.alarmy.external.weather.service.WeatherService;
@@ -13,6 +14,7 @@ import sopt.collaboration.alarmy.global.result.ResultCode;
 import sopt.collaboration.alarmy.global.result.ResultResponse;
 
 @RestController
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class WeatherController {
 
