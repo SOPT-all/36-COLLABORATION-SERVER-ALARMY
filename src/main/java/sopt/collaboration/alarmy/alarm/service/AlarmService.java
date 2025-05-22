@@ -1,6 +1,7 @@
 package sopt.collaboration.alarmy.alarm.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sopt.collaboration.alarmy.alarm.domain.Alarm;
@@ -20,6 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AlarmService {
@@ -56,8 +58,7 @@ public class AlarmService {
                 .collect(Collectors.toList());
     }
 
-    public AlarmCheckListResponse getTimeCheckAlarm(final long userId, final AlarmCheckRequest alarmCheckRequest) {
-        LocalDateTime currentTime = alarmCheckRequest.currentTime();
+    public AlarmCheckListResponse getTimeCheckAlarm(final long userId, final LocalDateTime currentTime) {
         String formattedTime = currentTimeFormatter(currentTime);
 
         Member member = memberRepository.findById(userId)
