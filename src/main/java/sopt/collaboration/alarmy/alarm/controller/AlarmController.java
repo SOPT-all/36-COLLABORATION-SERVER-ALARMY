@@ -5,11 +5,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sopt.collaboration.alarmy.alarm.dto.request.AlarmCheckRequest;
 import sopt.collaboration.alarmy.alarm.dto.request.AlarmRequest;
 import sopt.collaboration.alarmy.alarm.dto.response.AlarmCheckListResponse;
 import sopt.collaboration.alarmy.alarm.dto.response.AlarmResponse;
@@ -20,7 +18,6 @@ import sopt.collaboration.alarmy.global.result.ResultResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
@@ -105,7 +102,6 @@ public class AlarmController {
             @RequestHeader("userId") long userId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime currentTime
     ) {
-        log.info("currentTime: {}", currentTime);
         AlarmCheckListResponse alarmInfo = alarmService.getTimeCheckAlarm(userId, currentTime);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.ALARM_CHECK_TIME_SUCCESS, alarmInfo));
     }

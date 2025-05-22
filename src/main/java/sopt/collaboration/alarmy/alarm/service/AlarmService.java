@@ -1,11 +1,9 @@
 package sopt.collaboration.alarmy.alarm.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import sopt.collaboration.alarmy.alarm.domain.Alarm;
-import sopt.collaboration.alarmy.alarm.dto.request.AlarmCheckRequest;
 import sopt.collaboration.alarmy.alarm.dto.request.AlarmRequest;
 import sopt.collaboration.alarmy.alarm.dto.response.AlarmCheckListResponse;
 import sopt.collaboration.alarmy.alarm.dto.response.AlarmCheckResponse;
@@ -21,7 +19,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class AlarmService {
