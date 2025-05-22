@@ -5,9 +5,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sopt.collaboration.alarmy.alarm.dto.request.AlarmCheckRequest;
 import sopt.collaboration.alarmy.alarm.dto.request.AlarmRequest;
 import sopt.collaboration.alarmy.alarm.dto.response.AlarmCheckListResponse;
 import sopt.collaboration.alarmy.alarm.dto.response.AlarmResponse;
@@ -15,6 +15,7 @@ import sopt.collaboration.alarmy.alarm.service.AlarmService;
 import sopt.collaboration.alarmy.global.result.ResultCode;
 import sopt.collaboration.alarmy.global.result.ResultResponse;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -99,9 +100,9 @@ public class AlarmController {
     @GetMapping("/alarm/check")
     public ResponseEntity<ResultResponse<AlarmCheckListResponse>> getAlarmCheck(
             @RequestHeader("userId") long userId,
-            @RequestBody AlarmCheckRequest alarmCheckRequest
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") LocalDateTime currentTime
     ) {
-        AlarmCheckListResponse alarmInfo = alarmService.getTimeCheckAlarm(userId, alarmCheckRequest);
+        AlarmCheckListResponse alarmInfo = alarmService.getTimeCheckAlarm(userId, currentTime);
         return ResponseEntity.ok(ResultResponse.of(ResultCode.ALARM_CHECK_TIME_SUCCESS, alarmInfo));
     }
 }
